@@ -4,17 +4,38 @@
 
 <div>
 	<h3>Recommendations:</h3>
-	<button>scope</button>
-	<button>frown</button>
-	<button>batch</button>
+	<div class="recommendations-container">
+		<button>scope</button>
+		<button>frown</button>
+		<button>batch</button>
+	</div>
 
-	<input type="text" @bind=@inputValue/>
+	<input type="text" maxlength="5" class="guess-word-input" @bind=@inputValue />
 
-	<button>scope</button>
-	<button>frown</button>
-	<button>batch</button>
+	<div class="toggle-tiles-container">
+		@*FIXME: buttons need to be their own components because we have to manage their state*@
+		<button class="toggle-tile"></button>
+		<button class="toggle-tile"></button>
+		<button class="toggle-tile"></button>
+		<button class="toggle-tile"></button>
+		<button class="toggle-tile"></button>
+	</div>
+	
 </div>
 
 @code{
 	private string? inputValue;
+
+
+	// FIXME: once forloop is implemented with recommendations, add this to recommendation buttons' onclick
+	private void SelectRecommendedWord(string word)
+	{
+		inputValue = word;
+	}
+
+	private void ToggleBtnColor(int btnIndex)
+	{
+		// FIXME: this function will be moved to the toggle tile component 
+		// FIXME: use js to change the css class to the next color
+	}
 }
