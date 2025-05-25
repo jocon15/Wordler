@@ -1,0 +1,14 @@
+﻿.recommendations-container{
+    display: flex;
+}
+
+.guess-word-input {
+    width: 183px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.toggle-tiles-container {
+    display: flex;
+    margin-top: 20px;
+}
