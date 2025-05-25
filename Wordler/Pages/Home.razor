@@ -1,0 +1,20 @@
+﻿@page "/"
+
+<PageTitle>Wordler</PageTitle>
+
+<div>
+	<h3>Recommendations:</h3>
+	<button>scope</button>
+	<button>frown</button>
+	<button>batch</button>
+
+	<input type="text" @bind=@inputValue/>
+
+	<button>scope</button>
+	<button>frown</button>
+	<button>batch</button>
+</div>
+
+@code{
+	private string? inputValue;
+}

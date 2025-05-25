@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36121.58 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordler", "Wordler\Wordler.csproj", "{794C986B-4A39-4C04-AFA7-511136DABBCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{794C986B-4A39-4C04-AFA7-511136DABBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794C986B-4A39-4C04-AFA7-511136DABBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794C986B-4A39-4C04-AFA7-511136DABBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794C986B-4A39-4C04-AFA7-511136DABBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE1B23CF-15DA-44EC-8F22-1B7CADD914A4}
+	EndGlobalSection
+EndGlobal
