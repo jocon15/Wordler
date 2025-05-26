@@ -36,6 +36,30 @@
 	</div>
 </div>
 
+<h5>Board:</h5>
+<div class="board">
+	@foreach(BoardRow row in game.GetRows())
+	{
+		<div class="board-row">
+			@foreach(BoardTile tile in row.Tiles)
+			{
+				switch (tile.Color)
+				{
+					case TileColor.Green:
+						<div class="toggle-tile green-tile">@tile.Letter</div>
+						break;
+					case TileColor.Yellow:
+						<div class="toggle-tile yellow-tile">@tile.Letter</div>
+						break;
+					default:
+						<div class="toggle-tile grey-tile">@tile.Letter</div>
+						break;
+				}
+			}
+		</div>
+	}
+</div>
+
 @code{
 	private string? inputValue;
 
