@@ -17,6 +17,7 @@ namespace WordlerCore.Game
 
 		public void ResetGame()
 		{
+			Round = 1;
 			_filter = new Filter.Filter(GameData.WORDS_JSON, GameData.WORDS);
 		}
 
