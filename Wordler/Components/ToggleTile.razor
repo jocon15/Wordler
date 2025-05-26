@@ -9,11 +9,28 @@
 	public string? Letter { get; set; }
 
 	[Parameter]
+	public int RoundNumber { get; set; }
+
+	[Parameter]
 	public EventCallback<TileColorAlloy> UpdateTileColor { get; set; } 
+
+	private int StoredRoundNumber;
 
 	private TileColor _tileColor = TileColor.Grey;
 
 	private string _tileCSSClass = "grey-tile";
+
+	protected override void OnParametersSet()
+	{
+		// if this is the first render after a round change, reset the tiles to grey
+		if (RoundNumber != StoredRoundNumber)
+		{
+			_tileColor = TileColor.Grey;
+			_tileCSSClass = "grey-tile";
+			StoredRoundNumber = RoundNumber;
+			UpdateTileColor.InvokeAsync(new TileColorAlloy(TileIndex, _tileColor));
+		}
+	}
 
 	private void ToggleTileColor()
 	{
