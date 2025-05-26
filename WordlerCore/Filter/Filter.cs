@@ -25,6 +25,11 @@ namespace WordlerCore.Filter
 			_wordsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordsJSON);
 		}
 
+		public int GetRemainingWords()
+		{
+			return _potentialWords.Count;
+		}
+
 		public void FilterRound(string guessWord, List<TileColor> guessWordColors)
 		{
 			Stopwatch sw = new Stopwatch();
@@ -57,7 +62,7 @@ namespace WordlerCore.Filter
 
 			_whiteListWords = _potentialWords.Except(_blackListWords).ToList();
 
-			foreach (var word in _potentialWords)
+			foreach (var word in _blackListWords)
 			{
 				if (_wordsDictionary.ContainsKey(word))
 				{
@@ -118,7 +123,7 @@ namespace WordlerCore.Filter
 			char tileLetter = guessWordLetters[letterIndex];
 			TileColor tileColor = guessWordTileColors[letterIndex];
 
-			if (tileColor == TileColor.Grey) 
+			if (tileColor == TileColor.Green) 
 			{
 				// store the green letters to help decide grey letters
 				if (_greenLetters.Contains(tileLetter) == false)
@@ -140,7 +145,7 @@ namespace WordlerCore.Filter
 			char tileLetter = guessWordLetters[letterIndex];
 
 			foreach (var word in _potentialWords)
-			{
+			{			
 				// eliminate all words with that letter in that position
 				if (tileLetter == word[letterIndex])
 				{
@@ -156,13 +161,13 @@ namespace WordlerCore.Filter
 						{
 							continue;
 						}
-						if (tileLetter != word[j])
+						if (tileLetter == word[j])
 						{
 							letterFoundElsewhere = true;
 							break;
 						}
 					}
-					if (!letterFoundElsewhere)
+					if (letterFoundElsewhere == false)
 					{
 						_blackListWords.Add(word);
 					}
