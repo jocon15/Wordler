@@ -5,14 +5,12 @@
 <PageTitle>Wordler</PageTitle>
 
 <div>
+	<text>Round: @(game.Round)</text>
+	<text>Remaining words: @(game.GetRemainingWords())</text>
+
 	<h4>Suggestions:</h4>
 
-	<div class="suggestions-container">
-		@foreach(string suggestion in game.GetSuggestions())
-		{
-			<button @onclick="(() => SelectRecommendedWord(suggestion))">@suggestion</button>
-		}		
-	</div>
+	<Suggestions RoundNumber=@game.Round SelectSuggestedWord=@SelectSuggestedWord />
 
 	<Spacer Height=25 />
 
@@ -23,11 +21,11 @@
 
 	<h5>Results:</h5>
 	<div class="toggle-tiles-container">
-		<ToggleTile TileIndex=1 Letter=@(GetLetter(1)) UpdateTileColor=@UpdateTileColor />
-		<ToggleTile TileIndex=2 Letter=@(GetLetter(2)) UpdateTileColor=@UpdateTileColor />
-		<ToggleTile TileIndex=3 Letter=@(GetLetter(3)) UpdateTileColor=@UpdateTileColor />
-		<ToggleTile TileIndex=4 Letter=@(GetLetter(4)) UpdateTileColor=@UpdateTileColor />
-		<ToggleTile TileIndex=5 Letter=@(GetLetter(5)) UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=1 Letter=@(GetLetter(1)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=2 Letter=@(GetLetter(2)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=3 Letter=@(GetLetter(3)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=4 Letter=@(GetLetter(4)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=5 Letter=@(GetLetter(5)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
 	</div>
 
 	<Spacer Height=10 />
@@ -40,9 +38,7 @@
 @code{
 	private string? inputValue;
 
-
-	// FIXME: once forloop is implemented with recommendations, add this to recommendation buttons' onclick
-	private void SelectRecommendedWord(string word)
+	private void SelectSuggestedWord(string word)
 	{
 		inputValue = word;
 	}
