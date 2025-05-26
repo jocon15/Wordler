@@ -5,14 +5,14 @@
     margin-right: 2px;
 }
 
-.grey-tile{
-
+.grey-tile {
+    background-color: #787c7e;
 }
 
-.yellow-tile{
-
+.yellow-tile {
+    background-color: #c9b257;
 }
 
-.green-tile{
-
+.green-tile {
+    background-color: #69aa64;
 }
