@@ -1,0 +1,42 @@
+﻿@inject Game game
+
+<div class="suggestions-container">
+	@foreach (string suggestion in _suggestions)
+	{
+		<button @onclick="(() => SelectWord(suggestion))">@suggestion</button>
+	}
+</div>
+
+@code {
+
+	[Parameter]
+	public int RoundNumber { get; set; }
+
+	[Parameter]
+	public EventCallback<string> SelectSuggestedWord { get; set; }
+
+	private int StoredRoundNumber;
+
+	private List<string> _suggestions;
+
+	protected override void OnInitialized()
+	{
+		_suggestions = game.GetSuggestions();
+	}
+
+	protected override void OnParametersSet()
+	{
+		// if this is the first render after a round change, reset the suggestions
+		if (RoundNumber != StoredRoundNumber)
+		{
+			_suggestions = game.GetSuggestions();
+
+			StoredRoundNumber = RoundNumber;
+		}
+	}
+
+	private void SelectWord(string suggestedWord)
+	{
+		SelectSuggestedWord.InvokeAsync(suggestedWord);
+	}
+}
