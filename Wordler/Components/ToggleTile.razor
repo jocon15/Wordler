@@ -1,5 +1,38 @@
-﻿<h3>ToggleTile</h3>
+﻿<button class="toggle-tile @_tileCSSClass" @onclick=@ToggleTileColor>@Letter</button>
 
 @code {
 
+	[Parameter]
+	public int TileIndex { get; set; }
+
+	[Parameter]
+	public string? Letter { get; set; }
+
+	[Parameter]
+	public EventCallback<TileColorAlloy> UpdateTileColor { get; set; } 
+
+	private TileColor _tileColor = TileColor.Grey;
+
+	private string _tileCSSClass = "grey-tile";
+
+	private void ToggleTileColor()
+	{
+		switch (_tileColor)
+		{
+			case TileColor.Grey:
+				_tileColor = TileColor.Yellow;
+				_tileCSSClass = "yellow-tile";
+				break;
+			case TileColor.Yellow:
+				_tileColor = TileColor.Green;
+				_tileCSSClass = "green-tile";
+				break;
+			default:
+				_tileColor = TileColor.Grey;
+				_tileCSSClass = "grey-tile";
+				break;
+		}
+
+		UpdateTileColor.InvokeAsync(new TileColorAlloy(TileIndex, _tileColor));
+	}
 }
