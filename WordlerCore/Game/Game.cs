@@ -2,7 +2,6 @@
 
 namespace WordlerCore.Game
 {
-
 	public class BoardTile
 	{
 		public readonly char Letter;

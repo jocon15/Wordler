@@ -82,8 +82,7 @@ namespace WordlerCore.Filter
 			Dictionary<string, int> sortedPotentialWordsDictionary = _wordsDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 			if (sortedPotentialWordsDictionary.Count > 100)
 			{
-				// FIXME: may need to reverse the orderby if it is not correctly ordered
-				sortedPotentialWordsDictionary = sortedPotentialWordsDictionary.Take(100).ToDictionary(x => x.Key, x => x.Value);
+				sortedPotentialWordsDictionary = sortedPotentialWordsDictionary.Reverse().Take(100).ToDictionary(x => x.Key, x => x.Value);
 			}
 			List<string> sortedPotentialWordsList = sortedPotentialWordsDictionary.Reverse().Select(x => x.Key).ToList();
 
@@ -111,7 +110,7 @@ namespace WordlerCore.Filter
 			if (sortedPotentialWordsDictionary.Count > 100)
 			{
 				// FIXME: may need to reverse the orderby if it is not correctly ordered
-				sortedPotentialWordsDictionary = sortedPotentialWordsDictionary.Take(100).ToDictionary(x => x.Key, x => x.Value);
+				sortedPotentialWordsDictionary = sortedPotentialWordsDictionary.Reverse().Take(100).ToDictionary(x => x.Key, x => x.Value);
 			}
 			List<string> sortedPotentialWordsList = sortedPotentialWordsDictionary.Reverse().Select(x => x.Key).ToList();
 
