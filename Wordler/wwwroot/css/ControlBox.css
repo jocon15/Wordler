@@ -4,12 +4,12 @@
 
 .guess-word-input {
     font-family: var(--application-font-family);
-    height: 50px;
-    width: 400px;
+    height: 45px;
+    width: 300px;
     text-align: center;
     background-color: azure;
     border-radius: 50px;
-    font-size: 28px;
+    font-size: 22px;
     border: 1px;
     outline: none;
 }
