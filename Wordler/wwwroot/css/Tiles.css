@@ -1,8 +1,9 @@
 ﻿
 .toggle-tile {
     /*Leave the default font*/
-    height: 35px;
-    width: 35px;
+    height: 95px;
+    width: 95px;
+    font-size: 40px;
     border-width: 1px;
     margin-right: 2px;
     color: white;

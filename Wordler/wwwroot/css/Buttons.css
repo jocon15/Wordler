@@ -2,14 +2,16 @@
     --application-font-family: system-ui;
 }
 
-
 .submit-btn, .secondary-btn {
+    height: 60px;
+    font-size: 26px;
     font-family: var(--application-font-family);
     color: white;
-    border-radius: 20px;
+    border-radius: 40px;
     border-width: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin: 5px;
 }
 
 .submit-btn {
@@ -21,6 +23,9 @@
 }
 
 .suggestion-btn {
+    height: 60px;
+    width: 150px;
+    font-size: 30px;
     font-family: var(--application-font-family);
     background-color: azure;
     border-width: 0px;
