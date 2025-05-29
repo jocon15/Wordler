@@ -24,11 +24,24 @@
 		// if this is the first render after a round change, reset the tiles to grey
 		if (RoundNumber != StoredRoundNumber)
 		{
-			_tileColor = TileColor.Grey;
-			_tileCSSClass = "grey-tile";
-			StoredRoundNumber = RoundNumber;
-			UpdateTileColor.InvokeAsync(new TileColorAlloy(TileIndex, _tileColor));
+			SetTileToGrey();
 		}
+		// block the user from setting any of the tiles to a color before there is a letter in it
+		if (Letter == "")
+		{
+			if (_tileColor != TileColor.Grey)
+			{
+				SetTileToGrey();
+			}
+		}
+	}
+
+	private void SetTileToGrey()
+	{
+		_tileColor = TileColor.Grey;
+		_tileCSSClass = "grey-tile";
+		StoredRoundNumber = RoundNumber;
+		UpdateTileColor.InvokeAsync(new TileColorAlloy(TileIndex, _tileColor));
 	}
 
 	private void ToggleTileColor()

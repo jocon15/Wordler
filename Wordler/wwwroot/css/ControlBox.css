@@ -8,6 +8,7 @@
     background-color: azure;
     border-radius: 20px;
     border: 1px;
+    outline: none;
 }
 
 .toggle-tiles-container {
@@ -18,4 +19,8 @@
 
 .submit-btn-container{
     text-align: center;
+}
+
+.control-area-header {
+    font-family: var(--application-font-family);
 }

@@ -8,18 +8,18 @@
 		<text>Round: @(game.Round)</text>
 		<text>Remaining words: @(game.GetRemainingWords())</text>
 
-		<h5>Suggestions:</h5>
+		<h5 class="control-area-header">Suggestions:</h5>
 
 		<Suggestions RoundNumber=@game.Round SelectSuggestedWord=@SelectSuggestedWord />
 
 		<Spacer Height=25 />
 
-		<h5>Guess Word:</h5>
+		<h5 class="control-area-header">Guess Word:</h5>
 		<input type="text" maxlength="5" class="guess-word-input" @bind-value=@inputValue @bind-value:event="oninput" @bind-value:after=@UpdateLetters />
 
 		<Spacer Height=25 />
 
-		<h5>Results:</h5>
+		<h5 class="control-area-header">Results:</h5>
 		<div class="toggle-tiles-container">
 			<ToggleTile TileIndex=1 Letter=@(GetLetter(1)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
 			<ToggleTile TileIndex=2 Letter=@(GetLetter(2)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
@@ -31,7 +31,7 @@
 		<Spacer Height=10 />
 
 		<div class="submit-btn-container">
-			<button class="secondary-btn" @onclick=@StartOver>StartOver</button>
+			<button class="secondary-btn" @onclick=@StartOver>Start Over</button>
 			<button class="submit-btn" @onclick=@SubmitWord>Submit</button>
 		</div>
 	</div>

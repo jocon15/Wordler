@@ -1,4 +1,10 @@
-﻿.submit-btn, .secondary-btn {
+﻿:root{
+    --application-font-family: system-ui;
+}
+
+
+.submit-btn, .secondary-btn {
+    font-family: var(--application-font-family);
     color: white;
     border-radius: 20px;
     border-width: 0px;
@@ -15,11 +21,16 @@
 }
 
 .suggestion-btn {
+    font-family: var(--application-font-family);
     background-color: azure;
-    border-width: 1px;
+    border-width: 0px;
     margin: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-.submit-btn:hover, .secondary-btn:hover, .suggestion-btn{
+.submit-btn:hover, .secondary-btn:hover, .suggestion-btn:hover{
     opacity: 0.7;
 }

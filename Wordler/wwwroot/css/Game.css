@@ -10,7 +10,10 @@
     align-content: center;
     text-align: center;
     margin: 5px;
-    padding: 5px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
 }
 
 .board-container {
