@@ -14,9 +14,10 @@
 }
 
 .board-container {
+    height: fit-content;
     background-color: grey;
     border-radius: 10px;
     margin: 5px;
     padding: 10px;
-    min-width: 350px;
+    min-width: 250px;
 }

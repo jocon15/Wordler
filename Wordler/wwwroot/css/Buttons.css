@@ -3,8 +3,8 @@
 }
 
 .submit-btn, .secondary-btn {
-    height: 60px;
-    font-size: 22px;
+    height: 50px;
+    font-size: 20px;
     font-family: var(--application-font-family);
     color: white;
     border-radius: 40px;
@@ -23,8 +23,8 @@
 }
 
 .suggestion-btn {
-    height: 40px;
-    width: 70px;
+    height: 38px;
+    width: 60px;
     font-size: 18px;
     font-family: var(--application-font-family);
     background-color: azure;

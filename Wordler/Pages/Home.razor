@@ -45,13 +45,13 @@
 						switch (tile.Color)
 						{
 							case TileColor.Green:
-								<div class="toggle-tile green-tile">@char.ToUpper(tile.Letter)</div>
+								<div class="board-tile green-tile">@char.ToUpper(tile.Letter)</div>
 								break;
 							case TileColor.Yellow:
-								<div class="toggle-tile yellow-tile">@char.ToUpper(tile.Letter)</div>
+								<div class="board-tile yellow-tile">@char.ToUpper(tile.Letter)</div>
 								break;
 							default:
-								<div class="toggle-tile grey-tile">@char.ToUpper(tile.Letter)</div>
+								<div class="board-tile grey-tile">@char.ToUpper(tile.Letter)</div>
 								break;
 						}
 					}
@@ -61,11 +61,11 @@
 			@for (int i = 0; i < 6 - game.GetRows().Count; i++)
 			{
 				<div class="board-row">
-					<div class="toggle-tile outline-tile"></div>
-					<div class="toggle-tile outline-tile"></div>
-					<div class="toggle-tile outline-tile"></div>
-					<div class="toggle-tile outline-tile"></div>
-					<div class="toggle-tile outline-tile"></div>
+					<div class="board-tile outline-tile"></div>
+					<div class="board-tile outline-tile"></div>
+					<div class="board-tile outline-tile"></div>
+					<div class="board-tile outline-tile"></div>
+					<div class="board-tile outline-tile"></div>
 				</div>
 			}
 		</div>

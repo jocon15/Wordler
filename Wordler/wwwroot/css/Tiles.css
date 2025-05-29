@@ -1,9 +1,9 @@
 ﻿
 .toggle-tile {
     /*Leave the default font*/
-    height: 75px;
-    width: 75px;
-    font-size: 40px;
+    height: 70px;
+    width: 70px;
+    font-size: 30px;
     border-width: 1px;
     margin-right: 5px;
     color: white;
@@ -24,4 +24,14 @@
 
 .outline-tile{
     border: 1px solid white;
+}
+
+.board-tile {
+    height: 55px;
+    width: 55px;
+    font-size: 25px;
+    border-width: 1px;
+    margin-right: 5px;
+    color: white;
+    align-content: center;
 }

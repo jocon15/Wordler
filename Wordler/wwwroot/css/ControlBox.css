@@ -4,8 +4,8 @@
 
 .guess-word-input {
     font-family: var(--application-font-family);
-    height: 45px;
-    width: 300px;
+    height: 40px;
+    width: 270px;
     text-align: center;
     background-color: azure;
     border-radius: 50px;
