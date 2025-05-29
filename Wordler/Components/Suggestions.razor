@@ -7,6 +7,8 @@
 	}
 </div>
 
+<button class="secondary-btn" @onclick=@RerollSuggestions>Reroll</button>
+
 @code {
 
 	[Parameter]
@@ -33,6 +35,11 @@
 
 			StoredRoundNumber = RoundNumber;
 		}
+	}
+
+	private void RerollSuggestions()
+	{
+		_suggestions = game.GetSuggestions();
 	}
 
 	private void SelectWord(string suggestedWord)

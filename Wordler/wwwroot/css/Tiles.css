@@ -5,7 +5,7 @@
     width: 95px;
     font-size: 40px;
     border-width: 1px;
-    margin-right: 2px;
+    margin-right: 5px;
     color: white;
     align-content: center;
 }
@@ -20,4 +20,8 @@
 
 .green-tile {
     background-color: #69aa64;
+}
+
+.outline-tile{
+    border: 1px solid white;
 }

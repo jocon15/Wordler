@@ -9,7 +9,6 @@
 		<text>Remaining words: @(game.GetRemainingWords())</text>
 
 		<h3 class="control-area-header">Suggestions:</h3>
-
 		<Suggestions RoundNumber=@game.Round SelectSuggestedWord=@SelectSuggestedWord />
 
 		<Spacer Height=35 />
@@ -37,7 +36,6 @@
 	</div>
 
 	<div class="board-container">
-		<h3>Board:</h3>
 		<div class="board">
 			@foreach (BoardRow row in game.GetRows())
 			{
@@ -57,6 +55,17 @@
 								break;
 						}
 					}
+					
+				</div>
+			}
+			@for (int i = 0; i < 6 - game.GetRows().Count; i++)
+			{
+				<div class="board-row">
+					<div class="toggle-tile outline-tile"></div>
+					<div class="toggle-tile outline-tile"></div>
+					<div class="toggle-tile outline-tile"></div>
+					<div class="toggle-tile outline-tile"></div>
+					<div class="toggle-tile outline-tile"></div>
 				</div>
 			}
 		</div>
