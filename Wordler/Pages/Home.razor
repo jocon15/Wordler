@@ -46,13 +46,13 @@
 				switch (tile.Color)
 				{
 					case TileColor.Green:
-						<div class="toggle-tile green-tile">@tile.Letter</div>
+						<div class="toggle-tile green-tile">@char.ToUpper(tile.Letter)</div>
 						break;
 					case TileColor.Yellow:
-						<div class="toggle-tile yellow-tile">@tile.Letter</div>
+						<div class="toggle-tile yellow-tile">@char.ToUpper(tile.Letter)</div>
 						break;
 					default:
-						<div class="toggle-tile grey-tile">@tile.Letter</div>
+						<div class="toggle-tile grey-tile">@char.ToUpper(tile.Letter)</div>
 						break;
 				}
 			}
