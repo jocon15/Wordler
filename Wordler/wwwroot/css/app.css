@@ -1,5 +1,6 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #1b1b1b;
 }
 
 h1:focus {

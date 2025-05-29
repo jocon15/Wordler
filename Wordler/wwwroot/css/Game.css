@@ -1,0 +1,22 @@
+﻿.game-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.control-box-container {
+    background-color: grey;
+    border-radius: 10px;
+    align-content: center;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+.board-container {
+    background-color: grey;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    min-width: 150px;
+}

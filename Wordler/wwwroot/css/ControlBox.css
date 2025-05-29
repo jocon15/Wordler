@@ -9,6 +9,8 @@
 
 .toggle-tiles-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .submit-btn-container{
