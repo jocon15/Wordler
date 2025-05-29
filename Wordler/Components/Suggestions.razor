@@ -3,7 +3,7 @@
 <div class="suggestions-container">
 	@foreach (string suggestion in _suggestions)
 	{
-		<button @onclick="(() => SelectWord(suggestion))">@suggestion</button>
+		<button class="suggestion-btn" @onclick="(() => SelectWord(suggestion))">@suggestion</button>
 	}
 </div>
 

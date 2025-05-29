@@ -5,6 +5,9 @@
 .guess-word-input {
     width: 183px;
     text-align: center;
+    background-color: azure;
+    border-radius: 20px;
+    border: 1px;
 }
 
 .toggle-tiles-container {

@@ -1,2 +1,25 @@
-﻿body {
+﻿.submit-btn, .secondary-btn {
+    color: white;
+    border-radius: 20px;
+    border-width: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.submit-btn {
+    background-color: #04ba5f;
+}
+
+.secondary-btn {
+    background-color: #a0a1ad;
+}
+
+.suggestion-btn {
+    background-color: azure;
+    border-width: 1px;
+    margin: 1px;
+}
+
+.submit-btn:hover, .secondary-btn:hover, .suggestion-btn{
+    opacity: 0.7;
 }

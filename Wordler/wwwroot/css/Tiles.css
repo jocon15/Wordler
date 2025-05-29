@@ -2,6 +2,7 @@
 .toggle-tile {
     height: 35px;
     width: 35px;
+    border-width: 1px;
     margin-right: 2px;
     color: white;
     align-content: center;

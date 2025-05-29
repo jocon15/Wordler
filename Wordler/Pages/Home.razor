@@ -8,7 +8,7 @@
 		<text>Round: @(game.Round)</text>
 		<text>Remaining words: @(game.GetRemainingWords())</text>
 
-		<h4>Suggestions:</h4>
+		<h5>Suggestions:</h5>
 
 		<Suggestions RoundNumber=@game.Round SelectSuggestedWord=@SelectSuggestedWord />
 
@@ -31,8 +31,8 @@
 		<Spacer Height=10 />
 
 		<div class="submit-btn-container">
-			<button @onclick=@StartOver>StartOver</button>
-			<button @onclick=@SubmitWord>Submit</button>
+			<button class="secondary-btn" @onclick=@StartOver>StartOver</button>
+			<button class="submit-btn" @onclick=@SubmitWord>Submit</button>
 		</div>
 	</div>
 
