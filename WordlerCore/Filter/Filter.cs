@@ -18,7 +18,6 @@ namespace WordlerCore.Filter
 		private List<string> _blackListWords;
 		private List<string> _whiteListWords;
 		List<char> _greenLetters;
-		//char[] _letters = new char[5];
 
 		public Filter(string wordsJSON, List<string> words)
 		{
@@ -181,7 +180,7 @@ namespace WordlerCore.Filter
 				if (_greenLetters.Contains(guessLetter))
 				{
 					// case 1 : this letter is repeated as a green letter elsewhere
-					// only words with this letter in this index can be removed
+					// eliminate only words with this letter in this index
 					if (word[letterIndex] == guessLetter)
 					{
 						_blackListWords.Add(word);
@@ -190,13 +189,13 @@ namespace WordlerCore.Filter
 				else
 				{
 					// case 2: this letter is NOT repeated as a green letter elsewhere
-					// words containing this letter anywhere can be removed
+					// eliminate words containing this letter anywhere
 					if (word.Contains(guessLetter))
 					{
 						_blackListWords.Add(word);
 					}
 				}
-				// this letter will be yellow if it is repeated elsewhere in the word but not green yet
+				// Note: this letter will be yellow if it is repeated elsewhere in the word but not green yet
 			}
 		}
 
