@@ -24,8 +24,6 @@ namespace WordlerCore.Filter
 			_wordsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordsJSON);
 			_potentialWords = _wordsDictionary.Select(x => x.Key).ToList();
 			_greenLetters = new List<char>();
-
-			Console.WriteLine($"Dict: {_wordsDictionary.Where(x => !x.Key.Contains('-')).Select(x => x.Key).ToString()}");
 		}
 
 		public int GetRemainingWords()
@@ -157,11 +155,13 @@ namespace WordlerCore.Filter
 				{
 					if (j == letterIndex)
 					{
-						// eliminate all words with this letter in this position
-						_blackListWords.Add(word);
-						continue;
+						if (guessLetter == word[j])
+						{
+							// eliminate all words with this letter in this position
+							_blackListWords.Add(word);
+						}
 					}
-					if (guessLetter == word[j])
+					else if (guessLetter == word[j])
 					{
 						letterFoundElsewhere = true;
 						break;
