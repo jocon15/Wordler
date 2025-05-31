@@ -21,8 +21,8 @@ namespace WordlerCore.Filter
 
 		public Filter(string wordsJSON, List<string> words)
 		{
-			_potentialWords = words;
 			_wordsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordsJSON);
+			_potentialWords = _wordsDictionary.Select(x => x.Key).ToList();
 			_greenLetters = new List<char>();
 		}
 
