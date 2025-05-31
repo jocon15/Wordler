@@ -123,21 +123,14 @@ namespace WordlerCore.Filter
 		private void FilterWithGreenTile(int letterIndex, List<char> guessWordLetters, List<TileColor> guessWordTileColors)
 		{
 			char tileLetter = guessWordLetters[letterIndex];
-			TileColor tileColor = guessWordTileColors[letterIndex];
 
-			if (tileColor == TileColor.Green) 
+			_greenLetters.Add(tileLetter);
+
+			foreach (var word in _potentialWords)
 			{
-				// store the green letters to help decide grey letters
-				if (_greenLetters.Contains(tileLetter) == false)
+				if (tileLetter != word[letterIndex])
 				{
-					_greenLetters.Add(tileLetter); // DELETE ME
-				}
-				// eliminate all words without that letter in that position
-				foreach (var word in _potentialWords) {
-					if (tileLetter != word[letterIndex])
-					{
-						_blackListWords.Add(word);
-					}
+					_blackListWords.Add(word);
 				}
 			}
 		}
