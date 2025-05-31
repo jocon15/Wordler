@@ -18,6 +18,7 @@ namespace WordlerCore.Filter
 		private List<string> _blackListWords;
 		private List<string> _whiteListWords;
 		List<char> _greenLetters;
+		//char[] _letters = new char[5];
 
 		public Filter(string wordsJSON, List<string> words)
 		{
@@ -129,7 +130,7 @@ namespace WordlerCore.Filter
 				// store the green letters to help decide grey letters
 				if (_greenLetters.Contains(tileLetter) == false)
 				{
-					_greenLetters.Add(tileLetter);
+					_greenLetters.Add(tileLetter); // DELETE ME
 				}
 				// eliminate all words without that letter in that position
 				foreach (var word in _potentialWords) {
@@ -180,22 +181,27 @@ namespace WordlerCore.Filter
 		{
 			char tileLetter = guessWordLetters[letterIndex];
 
-			// checks the case where a letter is green in one spot, but if elsewhere in guessed word, appears grey
-			// be sure we do not eliminate words prematurely
-			if (_greenLetters.Contains(tileLetter) == false)
+			foreach (var word in _potentialWords)
 			{
-				// eliminate all words with that letter anywhere
-				foreach (var word in _potentialWords)
+				if (_greenLetters.Contains(tileLetter))
 				{
-					foreach (var letter in word)
+					// case 1 : this letter is repeated as a green letter elsewhere
+					// only words with this letter in this index can be removed
+					if (word[letterIndex] == tileLetter)
 					{
-						if (tileLetter == letter)
-						{
-							_blackListWords.Add(word);
-							break;
-						}
+						_blackListWords.Add(word);
 					}
 				}
+				else
+				{
+					// case 2: this letter is NOT repeated as a green letter elsewhere
+					// words containing this letter anywhere can be removed
+					if (word.Contains(tileLetter))
+					{
+						_blackListWords.Add(word);
+					}
+				}
+				// this letter will be yellow if it is repeated elsewhere in the word but not green yet
 			}
 		}
 
