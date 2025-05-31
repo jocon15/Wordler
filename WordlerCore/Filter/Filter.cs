@@ -24,6 +24,7 @@ namespace WordlerCore.Filter
 		{
 			_potentialWords = words;
 			_wordsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordsJSON);
+			_greenLetters = new List<char>();
 		}
 
 		public int GetRemainingWords()
@@ -44,7 +45,6 @@ namespace WordlerCore.Filter
 			_blackListWords = new List<string>();
 			_blackListWords.Add(guessWord);
 
-			_greenLetters = new List<char>();
 			for (int i = 0; i < WORDLE_LENGTH; i++)
 			{
 				TileColor currentTileColor = guessWordColors[i];
@@ -130,6 +130,7 @@ namespace WordlerCore.Filter
 			{
 				if (tileLetter != word[letterIndex])
 				{
+					// eliminate words that do not have this letter in this position
 					_blackListWords.Add(word);
 				}
 			}
