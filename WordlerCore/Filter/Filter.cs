@@ -39,27 +39,28 @@ namespace WordlerCore.Filter
 
 			guessWord = guessWord.ToLower();
 
-			// transform the guess word into a list
-			List<char> guessWordLetters = guessWord.ToCharArray().ToList();
-
 			_blackListWords = new List<string>();
 			_blackListWords.Add(guessWord);
 
+			// we must add the green letters from the guess word to the green letters list before we can filter
+			UpdateGreenLettersList(guessWord, guessWordColors);
+
 			for (int i = 0; i < WORDLE_LENGTH; i++)
 			{
+				char guessWordLetter = guessWord[i];
 				TileColor currentTileColor = guessWordColors[i];
 
 				if (currentTileColor == TileColor.Green)
 				{
-					FilterWithGreenTile(i, guessWordLetters, guessWordColors);
+					FilterWithGreenTile(i, guessWordLetter);
 				}
 				else if (currentTileColor == TileColor.Yellow)
 				{
-					FilterWithYellowTile(i, guessWordLetters);
+					FilterWithYellowTile(i, guessWordLetter);
 				}
 				else
 				{
-					FilterWithGreyTile(i, guessWordLetters);
+					FilterWithGreyTile(i, guessWordLetter);
 				}
 			}
 
@@ -120,15 +121,24 @@ namespace WordlerCore.Filter
 			return BuildSuggestionList(sortedPotentialWordsList);
 		}
 
-		private void FilterWithGreenTile(int letterIndex, List<char> guessWordLetters, List<TileColor> guessWordTileColors)
+		private void UpdateGreenLettersList(string guessWord, List<TileColor> guessWordColors)
 		{
-			char tileLetter = guessWordLetters[letterIndex];
+			for (int i = 0; i < WORDLE_LENGTH; i++)
+			{
+				if (guessWordColors[i] == TileColor.Green)
+				{
+					_greenLetters.Add(guessWord[i]);
+				}
+			}
+		}
 
-			_greenLetters.Add(tileLetter);
+		private void FilterWithGreenTile(int letterIndex, char guessLetter)
+		{
+			_greenLetters.Add(guessLetter);
 
 			foreach (var word in _potentialWords)
 			{
-				if (tileLetter != word[letterIndex])
+				if (guessLetter != word[letterIndex])
 				{
 					// eliminate words that do not have this letter in this position
 					_blackListWords.Add(word);
@@ -136,10 +146,8 @@ namespace WordlerCore.Filter
 			}
 		}
 
-		private void FilterWithYellowTile(int letterIndex, List<char> guessWordLetters)
+		private void FilterWithYellowTile(int letterIndex, char guessLetter)
 		{
-			char tileLetter = guessWordLetters[letterIndex];
-
 			bool letterFoundElsewhere;
 			foreach (var word in _potentialWords)
 			{
@@ -152,7 +160,7 @@ namespace WordlerCore.Filter
 						_blackListWords.Add(word);
 						continue;
 					}
-					if (tileLetter == word[j])
+					if (guessLetter == word[j])
 					{
 						letterFoundElsewhere = true;
 						break;
@@ -166,17 +174,15 @@ namespace WordlerCore.Filter
 			}
 		}
 
-		private void FilterWithGreyTile(int letterIndex, List<char> guessWordLetters)
+		private void FilterWithGreyTile(int letterIndex, char guessLetter)
 		{
-			char tileLetter = guessWordLetters[letterIndex];
-
 			foreach (var word in _potentialWords)
 			{
-				if (_greenLetters.Contains(tileLetter))
+				if (_greenLetters.Contains(guessLetter))
 				{
 					// case 1 : this letter is repeated as a green letter elsewhere
 					// only words with this letter in this index can be removed
-					if (word[letterIndex] == tileLetter)
+					if (word[letterIndex] == guessLetter)
 					{
 						_blackListWords.Add(word);
 					}
@@ -185,7 +191,7 @@ namespace WordlerCore.Filter
 				{
 					// case 2: this letter is NOT repeated as a green letter elsewhere
 					// words containing this letter anywhere can be removed
-					if (word.Contains(tileLetter))
+					if (word.Contains(guessLetter))
 					{
 						_blackListWords.Add(word);
 					}
