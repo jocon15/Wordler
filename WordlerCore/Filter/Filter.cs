@@ -32,8 +32,8 @@ namespace WordlerCore.Filter
 
 		public void FilterRound(string guessWord, List<TileColor> guessWordColors)
 		{
-			Stopwatch sw = new Stopwatch();
-			sw.Start();
+			//Stopwatch sw = new Stopwatch();
+			//sw.Start();
 
 			guessWord = guessWord.ToLower();
 
@@ -75,7 +75,7 @@ namespace WordlerCore.Filter
 			int previousPotentialWordCount = _potentialWords.Count;
 			_potentialWords = _whiteListWords;
 			
-			sw.Stop();
+			//sw.Stop();
 			// Console.WriteLine($"Round took {sw.ElapsedMilliseconds}ms");
 		}
 
