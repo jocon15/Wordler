@@ -7,10 +7,9 @@
     height: 40px;
     width: 270px;
     text-align: center;
-    background-color: azure;
+    border: 1px solid #b0b0b0;
     border-radius: 50px;
     font-size: 22px;
-    border: 1px;
     outline: none;
 }
 

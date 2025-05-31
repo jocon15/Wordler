@@ -222,7 +222,7 @@ namespace WordlerCore.Filter
 				{
 					continue;
 				}
-				suggestions.Add(randomSuggestion);
+				suggestions.Add(randomSuggestion.ToUpper());
 			}
 			return suggestions;
 		}

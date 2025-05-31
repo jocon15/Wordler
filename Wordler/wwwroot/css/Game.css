@@ -5,7 +5,7 @@
 }
 
 .control-box-container {
-    background-color: grey;
+    border: 1px solid #b0b0b0;
     border-radius: 10px;
     align-content: center;
     text-align: center;
@@ -14,8 +14,8 @@
 }
 
 .board-container {
+    border: 1px solid #b0b0b0;
     height: fit-content;
-    background-color: grey;
     border-radius: 10px;
     margin: 5px;
     padding: 10px;

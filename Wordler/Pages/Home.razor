@@ -14,7 +14,7 @@
 		<Spacer Height=35 />
 
 		<h3 class="control-area-header">Guess Word:</h3>
-		<input type="text" maxlength="5" class="guess-word-input" @bind-value=@inputValue @bind-value:event="oninput" @bind-value:after=@UpdateLetters />
+		<input type="text" maxlength="5" class="guess-word-input" @bind-value=@_inputValue @bind-value:event="oninput" @bind-value:after=@UpdateLetters />
 
 		<Spacer Height=35 />
 
@@ -73,11 +73,11 @@
 </div>
 
 @code{
-	private string? inputValue;
+	private string? _inputValue;
 
 	private void SelectSuggestedWord(string word)
 	{
-		inputValue = word;
+		_inputValue = word;
 	}
 
 	private TileColor _tile1Color = TileColor.Grey;
@@ -110,6 +110,11 @@
 
 	private void UpdateLetters()
 	{
+		if (_inputValue is not null)
+		{
+			_inputValue = _inputValue.ToUpper();
+		}
+
 		StateHasChanged();
 	}
 
@@ -117,7 +122,7 @@
 	{
 		try
 		{
-			return inputValue.Substring(tileIndex-1, 1);
+			return _inputValue.Substring(tileIndex-1, 1);
 		}
 		catch(Exception)
 		{
@@ -128,7 +133,7 @@
 
 	private void StartOver()
 	{
-		inputValue = null;
+		_inputValue = null;
 
 		game.ResetGame();
 	}
@@ -144,11 +149,11 @@
 			_tile5Color
 		};
 
-		if (inputValue is not null && inputValue.Length == 5)
+		if (_inputValue is not null && _inputValue.Length == 5)
 		{
-			game.SubmitWord(inputValue, guessWordColors);
+			game.SubmitWord(_inputValue, guessWordColors);
 
-			inputValue = null;
+			_inputValue = null;
 
 			StateHasChanged();
 		}
