@@ -146,33 +146,28 @@ namespace WordlerCore.Filter
 		{
 			char tileLetter = guessWordLetters[letterIndex];
 
+			bool letterFoundElsewhere;
 			foreach (var word in _potentialWords)
-			{			
-				// eliminate all words with that letter in that position
-				if (tileLetter == word[letterIndex])
+			{
+				letterFoundElsewhere = false;
+				for (int j = 0; j < WORDLE_LENGTH; j++)
 				{
-					_blackListWords.Add(word);
-				}
-				else
-				{
-					// eliminate words that do not have that letter in it somewhere else
-					bool letterFoundElsewhere = false;
-					for (int j = 0; j < WORDLE_LENGTH; j++)
+					if (j == letterIndex)
 					{
-						if (j == letterIndex)
-						{
-							continue;
-						}
-						if (tileLetter == word[j])
-						{
-							letterFoundElsewhere = true;
-							break;
-						}
-					}
-					if (letterFoundElsewhere == false)
-					{
+						// eliminate all words with this letter in this position
 						_blackListWords.Add(word);
+						continue;
 					}
+					if (tileLetter == word[j])
+					{
+						letterFoundElsewhere = true;
+						break;
+					}
+				}
+				if (letterFoundElsewhere == false)
+				{
+					// eliminate words that do not have this letter somewhere else
+					_blackListWords.Add(word);
 				}
 			}
 		}
