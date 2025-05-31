@@ -38,13 +38,13 @@ namespace WordlerCore.Game
 		
 		public Game() 
 		{
-			_filter = new Filter.Filter(GameData.WORDS_JSON, GameData.WORDS);
+			_filter = new Filter.Filter(GameData.WORDS_JSON);
 		}
 
 		public void ResetGame()
 		{
 			Round = 1;
-			_filter = new Filter.Filter(GameData.WORDS_JSON, GameData.WORDS);
+			_filter = new Filter.Filter(GameData.WORDS_JSON);
 			ClearRows();
 		}
 

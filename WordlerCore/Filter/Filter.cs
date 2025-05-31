@@ -19,11 +19,13 @@ namespace WordlerCore.Filter
 		private List<string> _whiteListWords;
 		List<char> _greenLetters;
 
-		public Filter(string wordsJSON, List<string> words)
+		public Filter(string wordsJSON)
 		{
 			_wordsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordsJSON);
 			_potentialWords = _wordsDictionary.Select(x => x.Key).ToList();
 			_greenLetters = new List<char>();
+
+			Console.WriteLine($"Dict: {_wordsDictionary.Where(x => !x.Key.Contains('-')).Select(x => x.Key).ToString()}");
 		}
 
 		public int GetRemainingWords()
