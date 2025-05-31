@@ -35,6 +35,8 @@ namespace WordlerCore.Filter
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
 
+			guessWord = guessWord.ToLower();
+
 			// transform the guess word into a list
 			List<char> guessWordLetters = guessWord.ToCharArray().ToList();
 
