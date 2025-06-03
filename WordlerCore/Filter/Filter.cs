@@ -101,7 +101,7 @@ namespace WordlerCore.Filter
 				}
 				catch (KeyNotFoundException)
 				{
-					// some words with dashes and such are not shared between the two files, skip thems
+					// some words with dashes and such are not shared between the two sets, skip them
 					continue;
 				}
 			}
@@ -109,7 +109,6 @@ namespace WordlerCore.Filter
 			Dictionary<string, int> sortedPotentialWordsDictionary = potentialWordsDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 			if (sortedPotentialWordsDictionary.Count > 100)
 			{
-				// FIXME: may need to reverse the orderby if it is not correctly ordered
 				sortedPotentialWordsDictionary = sortedPotentialWordsDictionary.Reverse().Take(100).ToDictionary(x => x.Key, x => x.Value);
 			}
 			List<string> sortedPotentialWordsList = sortedPotentialWordsDictionary.Reverse().Select(x => x.Key).ToList();
