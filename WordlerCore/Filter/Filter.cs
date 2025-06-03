@@ -67,10 +67,7 @@ namespace WordlerCore.Filter
 
 			foreach (var word in _blackListWords)
 			{
-				if (_wordsDictionary.ContainsKey(word))
-				{
-					_wordsDictionary.Remove(word);
-				}
+				_wordsDictionary.Remove(word);
 			}
 
 			int previousPotentialWordCount = _potentialWords.Count;
@@ -220,10 +217,12 @@ namespace WordlerCore.Filter
 				string randomSuggestion = sortedPotentialWordsList[rnd.Next(sortedPotentialWordsList.Count)];
 				if (suggestions.Contains(randomSuggestion))
 				{
+					// prevent duplicate words in the suggestion
 					continue;
 				}
 				if (IsLikelyWord(randomSuggestion) == false)
 				{
+					// prevent words with extraneous characters
 					continue;
 				}
 				suggestions.Add(randomSuggestion.ToUpper());
