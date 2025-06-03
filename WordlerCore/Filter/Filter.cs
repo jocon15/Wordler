@@ -10,6 +10,8 @@ namespace WordlerCore.Filter
 
 		public const int NUMBER_OF_SUGGESTIONS = 6;
 
+		public const int TOP_RATED_WORDS_TO_SUGGEST = 70;
+
 		public const string FILENAME = "words.txt";
 		public const string JSON_FILENAME = "words.json";
 
@@ -109,7 +111,7 @@ namespace WordlerCore.Filter
 			Dictionary<string, int> sortedPotentialWordsDictionary = potentialWordsDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 			if (sortedPotentialWordsDictionary.Count > 100)
 			{
-				sortedPotentialWordsDictionary = sortedPotentialWordsDictionary.Reverse().Take(100).ToDictionary(x => x.Key, x => x.Value);
+				sortedPotentialWordsDictionary = sortedPotentialWordsDictionary.Reverse().Take(TOP_RATED_WORDS_TO_SUGGEST).ToDictionary(x => x.Key, x => x.Value);
 			}
 			List<string> sortedPotentialWordsList = sortedPotentialWordsDictionary.Reverse().Select(x => x.Key).ToList();
 
@@ -197,23 +199,20 @@ namespace WordlerCore.Filter
 			}
 		}
 
-		private static List<string> BuildSuggestionList(List<string> sortedPotentialWordsList)
+		private static List<string> BuildSuggestionList(List<string> sortedRemainingWords)
 		{
-			List<string> suggestions = new List<string>();
-
-			if (sortedPotentialWordsList.Count <= NUMBER_OF_SUGGESTIONS)
+			// if we have fewer than 6 words remaining, just display that, do not randomize
+			if (sortedRemainingWords.Count <= NUMBER_OF_SUGGESTIONS)
 			{
-				foreach(var word in sortedPotentialWordsList)
-				{
-					suggestions.Add(word);
-				}
-				return suggestions;
+				return sortedRemainingWords;
 			}
 
+			// if we have greater than 6 words remining, randomize the suggestions 
+			List<string> suggestions = new List<string>();
 			while (suggestions.Count != NUMBER_OF_SUGGESTIONS)
 			{
 				Random rnd = new Random();
-				string randomSuggestion = sortedPotentialWordsList[rnd.Next(sortedPotentialWordsList.Count)];
+				string randomSuggestion = sortedRemainingWords[rnd.Next(sortedRemainingWords.Count)].ToUpper();
 				if (suggestions.Contains(randomSuggestion))
 				{
 					// prevent duplicate words in the suggestion
@@ -224,13 +223,16 @@ namespace WordlerCore.Filter
 					// prevent words with extraneous characters
 					continue;
 				}
-				suggestions.Add(randomSuggestion.ToUpper());
+				suggestions.Add(randomSuggestion);
 			}
 			return suggestions;
 		}
 
 		private static bool IsLikelyWord(string potentialWord)
 		{
+			// should come in as upper case but just in case
+			potentialWord = potentialWord.ToUpper();
+
 			if (potentialWord.Contains('-'))
 			{
 				return false;
@@ -239,7 +241,7 @@ namespace WordlerCore.Filter
 			{
 				return false;
 			}
-			if (potentialWord.EndsWith('s') && !potentialWord.EndsWith("ss"))
+			if (potentialWord.EndsWith('S') && !potentialWord.EndsWith("SS"))
 			{
 				return false;
 			}
