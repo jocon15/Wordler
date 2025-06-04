@@ -10,6 +10,10 @@ a, .btn-link {
     color: #0071c1;
 }
 
+.nav-menu-container {
+    display: flex;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
