@@ -204,7 +204,7 @@ namespace WordlerCore.Filter
 			// if we have fewer than 6 words remaining, just display that, do not randomize
 			if (sortedRemainingWords.Count <= NUMBER_OF_SUGGESTIONS)
 			{
-				return sortedRemainingWords;
+				return sortedRemainingWords.Select(x => x.ToUpper()).ToList();
 			}
 
 			// if we have greater than 6 words remining, randomize the suggestions 
