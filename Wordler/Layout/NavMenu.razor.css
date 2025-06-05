@@ -8,7 +8,10 @@
 }
 
 .navbar-brand {
-    font-size: 1.1rem;
+    font-family: Stencil;
+    font-weight: 50;
+    align-self: end;
+    font-size: 1.3rem;
 }
 
 .bi {
