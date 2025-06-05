@@ -4,6 +4,10 @@
     justify-content: center;
 }
 
+.how-to-play-container {
+    margin: 5px;
+}
+
 .control-box-container {
     border: 1px solid #b0b0b0;
     border-radius: 10px;

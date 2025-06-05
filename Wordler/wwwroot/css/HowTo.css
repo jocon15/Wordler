@@ -1,0 +1,16 @@
+﻿.details {
+    border: 1px solid #b0b0b0;
+    border-radius: 10px;
+    width: 400px;
+    padding-right: 5px;
+}
+
+.details-summary {
+    font-family: var(--application-font-family);
+    align-items: center;
+    padding: 10px;
+    font-weight: 520;
+    font-size: 25px;
+    width: 400px;
+    border-radius: 20px;
+}
