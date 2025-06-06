@@ -1,5 +1,128 @@
-﻿<h3>ControlBox</h3>
+﻿@inject Game game
+
+<div class="control-box-container">
+	<text>Round: @(game.Round)</text>
+	<text>Remaining words: @(game.GetRemainingWords())</text>
+
+	<h3 class="control-area-header">Suggestions:</h3>
+	<Suggestions RoundNumber=@game.Round SelectSuggestedWord=@SelectSuggestedWord />
+
+	<Spacer Height=35 />
+
+	<h3 class="control-area-header">Guess Word:</h3>
+	<input type="text" maxlength="5" class="guess-word-input" @bind-value=@_inputValue @bind-value:event="oninput" @bind-value:after=@UpdateLetters />
+
+	<Spacer Height=35 />
+
+	<h3 class="control-area-header">Results:</h3>
+	<div class="toggle-tiles-container">
+		<ToggleTile TileIndex=1 Letter=@(GetLetter(1)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=2 Letter=@(GetLetter(2)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=3 Letter=@(GetLetter(3)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=4 Letter=@(GetLetter(4)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+		<ToggleTile TileIndex=5 Letter=@(GetLetter(5)) RoundNumber=@game.Round UpdateTileColor=@UpdateTileColor />
+	</div>
+
+	<Spacer Height=35 />
+
+	<div class="submit-btn-container">
+		<button class="secondary-btn" @onclick=@StartOver>Start Over</button>
+		<button class="submit-btn" @onclick=@SubmitWord>Submit</button>
+	</div>
+</div>
 
 @code {
+	[Parameter]
+	public EventCallback RefreshOtherComponents { get; set; }
 
+	private string? _inputValue;
+
+	private TileColor _tile1Color = TileColor.Grey;
+	private TileColor _tile2Color = TileColor.Grey;
+	private TileColor _tile3Color = TileColor.Grey;
+	private TileColor _tile4Color = TileColor.Grey;
+	private TileColor _tile5Color = TileColor.Grey;
+
+	private void SelectSuggestedWord(string word)
+	{
+		_inputValue = word;
+	}
+
+	private string GetLetter(int tileIndex)
+	{
+		try
+		{
+			return _inputValue.Substring(tileIndex - 1, 1);
+		}
+		catch (Exception)
+		{
+			return "";
+		}
+	}
+
+	private void UpdateTileColor(TileColorAlloy alloy)
+	{
+		switch (alloy.TileIndex)
+		{
+			case 1:
+				_tile1Color = alloy.Color;
+				break;
+			case 2:
+				_tile2Color = alloy.Color;
+				break;
+			case 3:
+				_tile3Color = alloy.Color;
+				break;
+			case 4:
+				_tile4Color = alloy.Color;
+				break;
+			default:
+				_tile5Color = alloy.Color;
+				break;
+		}
+	}	
+
+	private void UpdateLetters()
+	{
+		if (_inputValue is not null)
+		{
+			_inputValue = _inputValue.ToUpper();
+		}
+
+		RefreshOtherComponents.InvokeAsync();
+	}
+
+	private void SubmitWord()
+	{
+		List<TileColor> guessWordColors = new List<TileColor>()
+		{
+			_tile1Color,
+			_tile2Color,
+			_tile3Color,
+			_tile4Color,
+			_tile5Color
+		};
+
+		if (_inputValue is not null && _inputValue.Length == 5)
+		{
+			game.SubmitWord(_inputValue, guessWordColors);
+
+			_inputValue = null;
+
+			RefreshOtherComponents.InvokeAsync();
+		}
+		else
+		{
+			// FIXME: throw error message
+		}
+	}
+
+	private void StartOver()
+	{
+		_inputValue = null;
+
+		game.ResetGame();
+
+		RefreshOtherComponents.InvokeAsync();
+	}
 }
