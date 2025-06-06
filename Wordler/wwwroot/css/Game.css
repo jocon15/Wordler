@@ -6,6 +6,7 @@
 
 .how-to-play-container {
     margin: 5px;
+    height: fit-content;
 }
 
 .control-box-container {
@@ -29,4 +30,5 @@
 
 .analytics-container {
     margin: 5px;
+    height: fit-content;
 }
