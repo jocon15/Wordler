@@ -20,6 +20,11 @@ a, .btn-link {
     justify-content: end;
 }
 
+.version {
+    font-size: 15px;
+    color: white;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
