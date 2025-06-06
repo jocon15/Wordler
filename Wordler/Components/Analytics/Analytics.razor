@@ -5,6 +5,16 @@
 		<summary class="details-summary">
 			Analytics
 		</summary>
+
+		<div class="round-analytics-container">
+			@foreach(RoundInfo round in game.Rounds)
+			{
+				<p class="round-title">Round @round.RoundNumber - @round.GuessWord</p>
+				<p class="round-stat">Eliminated @round.WordsEliminated words in @(round.EliminationTimeMS)ms</p>
+				<p class="round-stat">@round.WordsRemaining words remaining</p>
+			}
+		</div>
+
 		<div class="analytic-letters-container">
 			<h3 class="control-area-header">Vowels:</h3>
 
@@ -43,5 +53,8 @@
 </div>
 
 @code {
-
+	public void Refresh()
+	{
+		StateHasChanged();
+	}
 }

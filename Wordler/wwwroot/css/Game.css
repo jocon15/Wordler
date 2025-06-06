@@ -9,6 +9,7 @@
 }
 
 .control-box-container {
+    height: fit-content;
     border: 1px solid #b0b0b0;
     border-radius: 10px;
     align-content: center;

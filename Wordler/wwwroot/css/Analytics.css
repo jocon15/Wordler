@@ -1,5 +1,23 @@
-﻿.analytic-letters-container {
+﻿.round-analytics-container {
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+.round-title {
+    font-family: var(--application-font-family);
+    font-weight: bold;
+    margin: 0px;
+}
+
+.round-stat {
+    font-family: var(--application-font-family);
+    padding-left: 15px;
+    margin: 0px;
+}
+
+.analytic-letters-container {
     padding: 10px;
+    border-top: 1px solid #b0b0b0;
 }
 
 .vowels-container {
