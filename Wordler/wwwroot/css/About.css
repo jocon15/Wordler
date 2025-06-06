@@ -1,0 +1,28 @@
+﻿.about-container {
+    border: 1px solid #b0b0b0;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 400px;
+}
+
+.about-header {
+    margin-top: 10px;
+    font-family: var(--application-font-family);
+}
+
+.first-header{
+    margin-top: 0 !important;
+}
+
+.about-text {
+    margin-top: 10px;
+    font-family: var(--application-font-family);
+}
+
+.indented{
+    margin-left: 25px;
+}
+
+.double-indented{
+    margin-left: 50px;
+}

@@ -1,0 +1,94 @@
+﻿@page "/about"
+
+<PageTitle>Wordler</PageTitle>
+
+<div class="about-container">
+	<h3 class="about-header first-header">Welcome</h3>
+
+	<div class="about-text">
+		Welcome to Wordler! Wordler is a companion app for playing Wordle. Wordle is a fun game where you try and guess a five-letter word.
+		Hints are given based on correct, misplaced, or absent letters.
+	</div>
+
+	<h3 class="about-header">How To Use</h3>
+
+	<div class="about-text">
+		Wordler is intended to be used while you play Wordle. Use Wordler's suggestions to help you select guess words. Record your results in Wordler
+		to refine its suggestions each round. For more detailed instructions, see the <a href="">Home</a> page and click the <b>How To Play</b> dropdown.
+	</div>
+
+	<h3 class="about-header">How It Works</h3>
+
+	<div class="about-text">
+		Wordler helps you figure out the Wordle by using two primary mechanisms.
+	</div>
+
+	<h4 class="about-header indented">Mechanism 1: Process of Elimination</h4>
+
+	<div class="about-text indented">
+		As you complete the Wordle, Wordler uses the provided results to progressively eliminate words. There are over 20,000 five-letter words in the
+		English dictionary. Fortunately, all English words contain one or more of the six vowels. Guessing any word will eliminate thousands of possibilities
+		right off the bat.
+	</div>
+
+	<h4 class="about-header indented">Mechanism 2: Favor High-Use Words</h4>
+
+	<div class="about-text indented">
+		If you have played Wordle enough, you may have noticed that Wordle selects words that are frequently used and typically well-known. Let's look
+		at an example:
+	</div>
+
+	<div class="about-text double-indented">
+		"AAHED" is a real word in the dictionary.
+	</div>
+
+	<div class="about-text double-indented">
+		"MOVIE" is a word that Wordle would actually use.
+	</div>
+
+	<div class="about-text indented">
+		Wordle normally selects words that are commonly used. "MOVIE" is more often used than "AAHED". This makes words like "aahed" unlikely
+		guesses. This is the basis for the second mechanism, which operates by favoring commonly used words.
+	</div>
+
+	<div class="about-text indented">
+		The complex way to get statistics on word usage would be to query a service like
+		<a class="about-text" href="https://trends.google.com/trends/explore?q=movie&date=now%201-d&geo=US&hl=en">Google Trends</a>
+		for each word. Google trends will show the usage of a word over time.
+	</div>
+
+	<div class="about-text indented">
+		Our solution to this issue was to use 20 free downloadable books. With the help of a small script, the books were parsed to count the
+		number of occurrences of each five-letter word in the English language. The counts serve as the favorability score for each word.
+
+		Each time you guess a word, the remaining words are ordered by favorability score, @Filter.NUMBER_OF_SUGGESTIONS of the top 
+		@Filter.TOP_RATED_WORDS_TO_SUGGEST words are then randomly selected and served as suggestions to the user, which is how the shuffle 
+		function works.
+
+		Essentially, we created our own trend data without the need for rate-limited APIs.
+	</div>
+
+	<div class="about-text">
+		By guessing words, Wordler eliminates possible words using mechanism 1. The top used words of the remaining words are shuffled and presented 
+		as suggestions using mechanism 2. As you play each round, the suggestions should be refined until you are left with a single word.
+	</div>
+
+	<h3 class="about-header">Results</h3>
+
+	<div class="about-text">
+		In most cases, Wordler can find the wordle in 4-5 guesses. Typically, after 3 guesses, the correct word is obvious to a human among the remaining set of words,
+		which contain mostly little-known words.
+	</div>
+
+	<h3 class="about-header">Exceptions</h3>
+
+	<div class="about-text">
+		In rare cases, Wordle will use words that are not in the English language. In a recent Wordle, the word was "MACHO". This is a Spanish 
+		word and thus not in the English dictionary. However, this word is used in spoken English. Because edge cases like this are rare, Wordler 
+		does not include non-English dictionary words in its suggestions.
+	</div>
+</div>
+
+@code {
+
+}
