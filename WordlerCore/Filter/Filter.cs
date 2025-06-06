@@ -20,12 +20,14 @@ namespace WordlerCore.Filter
 		private List<string> _blackListWords;
 		private List<string> _whiteListWords;
 		List<char> _greenLetters;
+		List<char> _yellowLetters;
 
 		public Filter(string wordsJSON)
 		{
 			_wordsDictionary = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordsJSON);
 			_potentialWords = _wordsDictionary.Select(x => x.Key).ToList();
 			_greenLetters = new List<char>();
+			_yellowLetters = new List<char>();
 		}
 
 		public int GetRemainingWords()
@@ -43,8 +45,9 @@ namespace WordlerCore.Filter
 			_blackListWords = new List<string>();
 			_blackListWords.Add(guessWord);
 
-			// we must add the green letters from the guess word to the green letters list before we can filter
+			// we must add the green and yellow letters from to the respective lists before we can filter
 			UpdateGreenLettersList(guessWord, guessWordColors);
+			UpdateYellowLettersList(guessWord, guessWordColors);
 
 			for (int i = 0; i < WORDLE_LENGTH; i++)
 			{
@@ -129,6 +132,17 @@ namespace WordlerCore.Filter
 			}
 		}
 
+		private void UpdateYellowLettersList(string guessWord, List<TileColor> guessWordColors)
+		{
+			for (int i = 0; i < WORDLE_LENGTH; i++)
+			{
+				if (guessWordColors[i] == TileColor.Yellow)
+				{
+					_yellowLetters.Add(guessWord[i]);
+				}
+			}
+		}
+
 		private void FilterWithGreenTile(int letterIndex, char guessLetter)
 		{
 			_greenLetters.Add(guessLetter);
@@ -177,9 +191,10 @@ namespace WordlerCore.Filter
 		{
 			foreach (var word in _potentialWords)
 			{
-				if (_greenLetters.Contains(guessLetter))
+				if (_greenLetters.Contains(guessLetter) || _yellowLetters.Contains(guessLetter))
 				{
-					// case 1 : this letter is repeated as a green letter elsewhere
+					// case 1: this letter is repeated as a green letter elsewhere
+					// case 2: this letter is repeated as a yellow letter elsewhere
 					// eliminate only words with this letter in this index
 					if (word[letterIndex] == guessLetter)
 					{
@@ -188,7 +203,7 @@ namespace WordlerCore.Filter
 				}
 				else
 				{
-					// case 2: this letter is NOT repeated as a green letter elsewhere
+					// case 3: this letter is NOT repeated as a green letter elsewhere
 					// eliminate words containing this letter anywhere
 					if (word.Contains(guessLetter))
 					{
