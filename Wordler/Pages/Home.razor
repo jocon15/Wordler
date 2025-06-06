@@ -91,7 +91,51 @@
 			}
 		</div>
 	</div>
+
+	<div class="analytics-container">
+		<details class="details" open>
+			<summary class="details-summary">
+				Analytics
+			</summary>
+			<div class="analytic-letters-container">
+				<h3 class="control-area-header">Vowels:</h3>
+
+				<div class="vowels-container">
+					@foreach(AnalyticLetter letter in game.Vowels)
+					{
+						if (letter.Guessed)
+						{
+							<div class="board-tile grey-tile guessed">@letter.Letter</div>
+						}
+						else
+						{
+							<div class="board-tile grey-tile">@letter.Letter</div>
+						}
+					}
+				</div>
+
+				<h3 class="control-area-header">Common Consonants:</h3>
+
+				<div class="common-consonants-container">
+					@foreach (AnalyticLetter letter in game.CommonConsonants)
+					{
+						if (letter.Guessed)
+						{
+							<div class="board-tile grey-tile guessed">@letter.Letter</div>
+						}
+						else
+						{
+							<div class="board-tile grey-tile">@letter.Letter</div>
+						}
+					}
+				</div>
+
+			</div>
+		</details>
+	</div>
 </div>
+
+<Spacer Height=20 />
 
 @code{
 	private string? _inputValue;

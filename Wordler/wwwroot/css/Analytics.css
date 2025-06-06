@@ -1,0 +1,21 @@
+﻿.analytic-letters-container {
+    padding: 10px;
+}
+
+.vowels-container {
+    display: flex;
+    text-align: center;
+    margin-bottom: 2px;
+    justify-content: center;
+}
+
+.common-consonants-container {
+    display: flex;
+    text-align: center;
+    margin-bottom: 2px;
+    justify-content: center;
+}
+
+.guessed{
+    opacity: 0.1;
+}
