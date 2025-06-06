@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
+using WordlerCore.Analytics;
 using WordlerCore.Tile;
 
 namespace WordlerCore.Filter
@@ -35,10 +36,10 @@ namespace WordlerCore.Filter
 			return _potentialWords.Count;
 		}
 
-		public void FilterRound(string guessWord, List<TileColor> guessWordColors)
+		public RoundInfo FilterRound(int roundNumber, string guessWord, List<TileColor> guessWordColors)
 		{
-			//Stopwatch sw = new Stopwatch();
-			//sw.Start();
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
 
 			guessWord = guessWord.ToLower();
 
@@ -78,8 +79,11 @@ namespace WordlerCore.Filter
 			int previousPotentialWordCount = _potentialWords.Count;
 			_potentialWords = _whiteListWords;
 			
-			//sw.Stop();
+			sw.Stop();
 			// Console.WriteLine($"Round took {sw.ElapsedMilliseconds}ms");
+
+			int eliminatedWords = previousPotentialWordCount - _potentialWords.Count;
+			return new RoundInfo(roundNumber, guessWord.ToUpper(), eliminatedWords, _potentialWords.Count, sw.ElapsedMilliseconds);
 		}
 
 		public List<string> GetInitialSuggestions()

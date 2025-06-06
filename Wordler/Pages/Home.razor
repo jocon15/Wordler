@@ -10,7 +10,7 @@
 			<summary class="details-summary">
 				How To Play
 			</summary>
-			<ol type="1">
+			<ol type="1" class="how-to-play-text-container">
 				<li>Load up Wordle and Wordler by opening both. You’re going to switch between apps like you normally would. Switch to Wordler.</li>
 				<li>Look at the Wordler suggestions to help you guess a word (shuffle can be used any time).</li>
 				<li>Once you spot a word you like, tap it and it will auto fill the guess word box and result tiles.</li>
@@ -91,10 +91,16 @@
 			}
 		</div>
 	</div>
+
+	<Analytics @ref="_analyticsComponent"/>
 </div>
+
+<Spacer Height=20 />
 
 @code{
 	private string? _inputValue;
+
+	private Analytics _analyticsComponent;
 
 	private void SelectSuggestedWord(string word)
 	{
@@ -136,7 +142,7 @@
 			_inputValue = _inputValue.ToUpper();
 		}
 
-		StateHasChanged();
+		RefreshAll();
 	}
 
 	private string GetLetter(int tileIndex)
@@ -157,6 +163,8 @@
 		_inputValue = null;
 
 		game.ResetGame();
+
+		RefreshAll();
 	}
 
 	private void SubmitWord()
@@ -176,12 +184,18 @@
 
 			_inputValue = null;
 
-			StateHasChanged();
+			RefreshAll();
 		}
 		else
 		{
 			// FIXME: throw error message
 		}
+	}
+
+	private void RefreshAll()
+	{
+		_analyticsComponent.Refresh();
+		StateHasChanged();
 	}
 
 }

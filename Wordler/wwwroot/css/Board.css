@@ -8,5 +8,5 @@
 .board-row {
     display: flex;
     text-align: center;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }

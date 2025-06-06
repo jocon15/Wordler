@@ -1,0 +1,60 @@
+﻿@inject Game game
+
+<div class="analytics-container">
+	<details class="details" open>
+		<summary class="details-summary">
+			Analytics
+		</summary>
+
+		<div class="round-analytics-container">
+			@foreach(RoundInfo round in game.Rounds)
+			{
+				<p class="round-title">Round @round.RoundNumber - @round.GuessWord</p>
+				<p class="round-stat">Eliminated @round.WordsEliminated words in @(round.EliminationTimeMS)ms</p>
+				<p class="round-stat">@round.WordsRemaining words remaining</p>
+			}
+		</div>
+
+		<div class="analytic-letters-container">
+			<h3 class="control-area-header">Vowels:</h3>
+
+			<div class="vowels-container">
+				@foreach (AnalyticLetter letter in game.Vowels)
+				{
+					if (letter.Guessed)
+					{
+						<div class="board-tile grey-tile guessed">@letter.Letter</div>
+					}
+					else
+					{
+						<div class="board-tile grey-tile">@letter.Letter</div>
+					}
+				}
+			</div>
+
+			<h3 class="control-area-header">Common Consonants:</h3>
+
+			<div class="common-consonants-container">
+				@foreach (AnalyticLetter letter in game.CommonConsonants)
+				{
+					if (letter.Guessed)
+					{
+						<div class="board-tile grey-tile guessed">@letter.Letter</div>
+					}
+					else
+					{
+						<div class="board-tile grey-tile">@letter.Letter</div>
+					}
+				}
+			</div>
+
+		</div>
+	</details>
+</div>
+
+@code {
+	public void Refresh()
+	{
+		StateHasChanged();
+	}
+}

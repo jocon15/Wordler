@@ -6,9 +6,11 @@
 
 .how-to-play-container {
     margin: 5px;
+    height: fit-content;
 }
 
 .control-box-container {
+    height: fit-content;
     border: 1px solid #b0b0b0;
     border-radius: 10px;
     align-content: center;
@@ -24,4 +26,9 @@
     margin: 5px;
     padding: 10px;
     min-width: 250px;
+}
+
+.analytics-container {
+    margin: 5px;
+    height: fit-content;
 }
