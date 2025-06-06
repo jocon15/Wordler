@@ -38,51 +38,19 @@
 		</div>
 	</div>
 
-	<div class="board-container">
-		<div class="board">
-			@foreach (BoardRow row in game.GetRows())
-			{
-				<div class="board-row">
-					@foreach (BoardTile tile in row.Tiles)
-					{
-						switch (tile.Color)
-						{
-							case TileColor.Green:
-								<div class="board-tile green-tile">@char.ToUpper(tile.Letter)</div>
-								break;
-							case TileColor.Yellow:
-								<div class="board-tile yellow-tile">@char.ToUpper(tile.Letter)</div>
-								break;
-							default:
-								<div class="board-tile grey-tile">@char.ToUpper(tile.Letter)</div>
-								break;
-						}
-					}
-					
-				</div>
-			}
-			@for (int i = 0; i < 6 - game.GetRows().Count; i++)
-			{
-				<div class="board-row">
-					<div class="board-tile outline-tile"></div>
-					<div class="board-tile outline-tile"></div>
-					<div class="board-tile outline-tile"></div>
-					<div class="board-tile outline-tile"></div>
-					<div class="board-tile outline-tile"></div>
-				</div>
-			}
-		</div>
-	</div>
+	<Board @ref="_boardComponent" />
 
-	<Analytics @ref="_analyticsComponent"/>
+	<Analytics @ref="_analyticsComponent" />
 </div>
 
 <Spacer Height=20 />
 
 @code{
-	private string? _inputValue;
-
+	/* Components */
 	private Analytics _analyticsComponent;
+	private Board _boardComponent;
+
+	private string? _inputValue;
 
 	private void SelectSuggestedWord(string word)
 	{
@@ -177,6 +145,7 @@
 	private void RefreshAll()
 	{
 		_analyticsComponent.Refresh();
+		_boardComponent.Refresh();
 		StateHasChanged();
 	}
 

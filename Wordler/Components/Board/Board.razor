@@ -1,0 +1,44 @@
+﻿@inject Game game
+
+<div class="board-container">
+	<div class="board">
+		@foreach (BoardRow row in game.GetRows())
+		{
+			<div class="board-row">
+				@foreach (BoardTile tile in row.Tiles)
+				{
+					switch (tile.Color)
+					{
+						case TileColor.Green:
+							<div class="board-tile green-tile">@char.ToUpper(tile.Letter)</div>
+							break;
+						case TileColor.Yellow:
+							<div class="board-tile yellow-tile">@char.ToUpper(tile.Letter)</div>
+							break;
+						default:
+							<div class="board-tile grey-tile">@char.ToUpper(tile.Letter)</div>
+							break;
+					}
+				}
+
+			</div>
+		}
+		@for (int i = 0; i < 6 - game.GetRows().Count; i++)
+		{
+			<div class="board-row">
+				<div class="board-tile outline-tile"></div>
+				<div class="board-tile outline-tile"></div>
+				<div class="board-tile outline-tile"></div>
+				<div class="board-tile outline-tile"></div>
+				<div class="board-tile outline-tile"></div>
+			</div>
+		}
+	</div>
+</div>
+
+@code {
+	public void Refresh()
+	{
+		StateHasChanged();
+	}
+}
